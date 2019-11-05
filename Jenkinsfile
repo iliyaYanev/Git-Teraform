@@ -1,5 +1,5 @@
 try {
-  stage('checkout') {
+  stage('Checkout') {
     node {
       cleanWs()
       checkout scm
