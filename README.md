@@ -1,2 +1,2 @@
-# Git-Teraform
-Sample Project Integrating GitHub, Teraform and Jenkins
+# Git-Terraform
+Sample Project Integrating GitHub, Terraform and Jenkins
