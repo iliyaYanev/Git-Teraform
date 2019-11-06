@@ -11,6 +11,12 @@ try {
             sh "./gradlew clean build -x test --max-workers=3"
         }
     }
+    stage("Unit tests") {
+            node {
+                sh "chmod +x gradlew"
+                sh "./gradlew clean test -x test --max-workers=3"
+            }
+        }
 
   currentBuild.result = 'SUCCESS'
 }
