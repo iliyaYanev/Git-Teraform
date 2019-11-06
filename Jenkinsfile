@@ -7,6 +7,11 @@ try {
   }
   currentBuild.result = 'SUCCESS'
 }
+stage("Build") {
+    node {
+        sh "gradle build -x test"
+    }
+}
 
 catch (org.jenkinsci.plugins.workflow.steps.FlowInterruptedException flowError) {
   currentBuild.result = 'ABORTED'
