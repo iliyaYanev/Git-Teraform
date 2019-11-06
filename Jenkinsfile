@@ -7,7 +7,7 @@ try {
   }
     stage("Build") {
         node {
-            sh "gradle build -x test"
+            sh "./gradlew clean build -x test"
         }
     }
 
