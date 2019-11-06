@@ -1,16 +1,17 @@
 try {
   stage('Checkout') {
-    node {
+    node('test-node') {
       cleanWs()
       checkout scm
     }
   }
-  currentBuild.result = 'SUCCESS'
-}
-stage("Build") {
-    node {
-        sh "gradle build -x test"
+    stage("Build") {
+        node('test-node') {
+            sh "gradle build -x test"
+        }
     }
+
+  currentBuild.result = 'SUCCESS'
 }
 
 catch (org.jenkinsci.plugins.workflow.steps.FlowInterruptedException flowError) {
