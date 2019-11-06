@@ -14,7 +14,7 @@ try {
     stage("Unit tests") {
             node {
                 sh "chmod +x gradlew"
-                sh "./gradlew clean test --max-workers=3"
+                sh "./gradlew test --max-workers=3"
             }
         }
 
