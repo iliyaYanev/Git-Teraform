@@ -5,18 +5,18 @@ try {
       checkout scm
     }
   }
-    stage("Build") {
+    stage("Compile") {
         node {
             sh "chmod +x gradlew"
             sh "./gradlew clean build -x test --max-workers=3"
         }
     }
-    stage("Unit tests") {
-            node {
-                sh "chmod +x gradlew"
-                sh "./gradlew test --max-workers=3"
-            }
+
+    stage("Build Docker Image") {
+        node {
+            
         }
+    }
 
   currentBuild.result = 'SUCCESS'
 }
