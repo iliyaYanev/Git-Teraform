@@ -8,7 +8,7 @@ try {
     stage("Build") {
         node {
             sh "chmod +x gradlew"
-            sh "./gradlew clean build -x test --max-workers=1"
+            sh "./gradlew clean build -x test --max-workers=3"
         }
     }
 
