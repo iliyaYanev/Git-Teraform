@@ -1,12 +1,12 @@
 try {
   stage('Checkout') {
-    node('test-node') {
+    node {
       cleanWs()
       checkout scm
     }
   }
     stage("Build") {
-        node('test-node') {
+        node {
             sh "gradle build -x test"
         }
     }
