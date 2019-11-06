@@ -1,0 +1,42 @@
+group 'com.mentormate'
+version '1.0-SNAPSHOT'
+
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+	}
+}
+
+subprojects {
+	apply plugin: 'java'
+	apply plugin: 'io.spring.dependency-management'
+
+	sourceCompatibility = JavaVersion.VERSION_11
+	targetCompatibility = JavaVersion.VERSION_11
+
+	configurations {
+		compileOnly {
+			extendsFrom annotationProcessor
+		}
+	}
+
+	repositories {
+		mavenCentral()
+		jcenter()
+		maven {
+			url "https://dl.bintray.com/eventuateio-oss/eventuate-maven-release"
+		}
+		eventuateMavenRepoUrl.split(',').each { repoUrl -> maven { url repoUrl } }
+	}
+
+
+	dependencies {
+		compileOnly 'org.projectlombok:lombok'
+		annotationProcessor 'org.projectlombok:lombok'
+		testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+	}
+
+}

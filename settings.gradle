@@ -1,0 +1,6 @@
+include "common"
+include "customer-service"
+include "order-service"
+rootProject.name = 'sales'
+include 'common-swagger'
+
