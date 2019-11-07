@@ -1,6 +1,14 @@
 import groovy.json.JsonSlurperClassic
 import groovy.json.JsonOutput
 
+environment
+    {
+
+        PROJECT = 'demo'
+        URL = 'http://445669340969.dkr.ecr.eu-central-1.amazonaws.com'
+        CREDENTIALS = 'ecr:eu-central-1:awsCredentials'
+    }
+
 try {
     timeout(time: 10, unit: 'MINUTES') {
       stage('Checkout') {
@@ -45,8 +53,7 @@ try {
 
         stage("Push to ECR") {
             node {
-                sh "aws ecr get-login --region eu-central-1 --no-include-email"
-                docker.withRegistry('https://445669340969.dkr.ecr.eu-central-1.amazonaws.com/ecr-repo', 'ecr:eu-central-1:awsCredentials')
+                docker.withRegistry(URL, CREDENTIALS)
                 docker.image('demo').push('latest')
             }
          }
