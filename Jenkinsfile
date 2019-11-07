@@ -27,6 +27,7 @@ try {
                     sh(script: "echo \"./gradlew bootRun --args='--spring.profiles.active=test' --no-daemon --max-workers=3\" | at now", returnStdout: true)
                     //Allow service to come up
                     sleep(time: 20, unit: 'SECONDS')
+
                 }
         }
 
@@ -70,11 +71,11 @@ def healthCheck(int interval) {
         sleep(time: interval, unit: 'SECONDS')
         status = healthResult()
     }
+    println "Project Deployed."
 }
 
 def healthResult() {
     def response = sh(script:"curl -s -X GET -H 'Accept: application/json' -H 'Content-Type: application/json' http://ec2-18-197-152-13.eu-central-1.compute.amazonaws.com:9090/user/actuator/health", returnStdout: true)
     println response
-    String status = jsonParse(response)
-    return status
+    return jsonParse(response).status
 }
