@@ -56,6 +56,15 @@ try {
                 }
             }
          }
+
+         stage("Cleanup") {
+              node {
+                 always {
+                     sh "docker rmi demo:latest | true"
+                     cleanWs()
+                 }
+              }
+         }
 }
 
   currentBuild.result = 'SUCCESS'
