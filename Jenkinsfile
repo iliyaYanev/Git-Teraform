@@ -22,7 +22,7 @@ try {
 
         stage("Deploy") {
                         node {
-                            sh "./gradlew bootRun --args='--spring.profiles.active=test' --no-daemon --max-workers=3"
+                            sh(script: "echo \"./gradlew bootRun --args='--spring.profiles.active=test' --no-daemon --max-workers=3\" | at now", returnStdout: true)
                         }
                     }
 
