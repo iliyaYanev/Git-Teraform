@@ -52,7 +52,7 @@ try {
                     // Push the Docker image to ECR
                     docker.withRegistry('https://445669340969.dkr.ecr.eu-central-1.amazonaws.com', 'ecr:eu-central-1:awsCredentials')
                     {
-                        docker.image('demo:latest').push()
+                        docker.image('demo').push('latest')
                     }
                 }
             }
