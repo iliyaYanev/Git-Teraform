@@ -60,7 +60,7 @@ try {
          stage("Cleanup") {
               node {
                  always {
-                     sh "docker rmi demo:latest | true"
+                     sh(script: "docker rmi demo:latest | true", returnStdout: true)
                      cleanWs()
                  }
               }
