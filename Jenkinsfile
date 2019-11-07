@@ -39,7 +39,7 @@ try {
 
         stage("Build Docker Image") {
             node {
-
+                sh "./gradlew buildDocker --no-daemon --max-workers=3"
             }
         }
     }
