@@ -1,3 +1,6 @@
+import groovy.json.JsonSlurperClassic
+import groovy.json.JsonOutput
+
 try {
     timeout(time: 10, unit: 'MINUTES') {
       stage('Checkout') {
@@ -49,14 +52,21 @@ finally {
   }
 }
 
+@NonCPS
+def jsonParse(def json) {
+    return new groovy.json.JsonSlurperClassic().parseText(json)
+}
+
 def healthCheck(int interval) {
+    String status = healthResult()
     while(status != "UP") {
         sleep(time: interval, unit: 'SECONDS')
-        healthResult()
+        status = healthResult()
     }
 }
 
 def healthResult() {
     def response = sh(script:"curl -s -X GET -H 'Accept: application/json' -H 'Content-Type: application/json' http://ec2-18-197-152-13.eu-central-1.compute.amazonaws.com:9090/user/actuator/health", returnStdout: true)
-    return response
+    String status = jsonParse(response)
+    return status
 }
