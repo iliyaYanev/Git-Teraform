@@ -26,7 +26,7 @@ try {
         stage("Deploy") {
                         node {
                             sh(script: "echo \"./gradlew bootRun --args='--spring.profiles.active=test' --no-daemon --max-workers=3\" | at now", returnStdout: true)
-
+                            healthCheck(2)
                         }
                     }
 
