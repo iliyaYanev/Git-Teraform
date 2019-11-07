@@ -1,29 +1,29 @@
 try {
-  stage('Checkout') {
-    node {
-      cleanWs()
-      checkout scm
-    }
-  }
-    stage("Compile") {
-    timeout(time: 5, unit: 'MINUTES')
+    timeout(time: 10, unit: 'MINUTES') {
+      stage('Checkout') {
         node {
-            sh "chmod +x gradlew"
-            sh "./gradlew clean build -x test --max-workers=3"
+          cleanWs()
+          checkout scm
         }
-    }
-
-    stage("Unit Tests") {
-        timeout(time: 5, unit: 'MINUTES')
+      }
+        stage("Compile") {
             node {
                 sh "chmod +x gradlew"
-                sh "./gradlew clean test --max-workers=3"
+                sh "./gradlew clean build -x test --max-workers=3"
             }
         }
 
-    stage("Build Docker Image") {
-        node {
-            
+        stage("Unit Tests") {
+                node {
+                    sh "chmod +x gradlew"
+                    sh "./gradlew clean test --max-workers=3"
+                }
+            }
+
+        stage("Build Docker Image") {
+            node {
+
+            }
         }
     }
 
