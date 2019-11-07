@@ -50,7 +50,7 @@ try {
                 {
                     //sh("eval \$(aws ecr get-login --no-include-email --region eu-central-1 | sed 's|https://||')")
                     // Push the Docker image to ECR
-                    docker.withRegistry('https://445669340969.dkr.ecr.eu-central-1.amazonaws.com/ecr-repo', 'ecr:eu-central-1:awsCredentials')
+                    docker.withRegistry('https://445669340969.dkr.ecr.eu-central-1.amazonaws.com', 'ecr:eu-central-1:awsCredentials')
                     {
                         docker.image('demo:latest').push()
                     }
