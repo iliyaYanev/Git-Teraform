@@ -6,11 +6,20 @@ try {
     }
   }
     stage("Compile") {
+    timeout(time: 5, unit: 'MINUTES')
         node {
             sh "chmod +x gradlew"
             sh "./gradlew clean build -x test --max-workers=3"
         }
     }
+
+    stage("Unit Tests") {
+        timeout(time: 5, unit: 'MINUTES')
+            node {
+                sh "chmod +x gradlew"
+                sh "./gradlew clean test --max-workers=3"
+            }
+        }
 
     stage("Build Docker Image") {
         node {
