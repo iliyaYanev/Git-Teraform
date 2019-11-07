@@ -1,13 +1,8 @@
 package data
 
 class ApiPaths {
-    class Customer {
-        static customers = "/customers"
-        static customerById = "/customers/{id}"
-    }
-
-    class Order {
-        static orders = "/orders"
-        static orderById = "/orders/{id}"
+    class User {
+        static users = "/api/v1/users"
+        static userById = "/api/v1/users/{id}"
     }
 }

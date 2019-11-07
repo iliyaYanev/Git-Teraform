@@ -5,9 +5,6 @@ import com.github.javafaker.Faker
 class FakeData {
     static faker = new Faker()
 
-    static fullName() {
-        return faker.name().fullName()
-    }
 
     static firstName() {
         return faker.name().firstName()
