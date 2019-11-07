@@ -1,6 +1,7 @@
 import groovy.json.JsonSlurperClassic
 import groovy.json.JsonOutput
 
+
 try {
     timeout(time: 10, unit: 'MINUTES') {
       stage('Checkout') {
@@ -17,18 +18,18 @@ try {
         }
 
         stage("Unit Tests") {
-                node {
-                    sh "./gradlew clean test --no-daemon --max-workers=3"
-                }
+            node {
+                sh "./gradlew clean test --no-daemon --max-workers=3"
             }
+        }
 
         stage("Deploy") {
-                node {
-                    sh(script: "echo \"./gradlew bootRun --args='--spring.profiles.active=test' --no-daemon --max-workers=3\" | at now", returnStdout: true)
-                    //Allow service to come up
-                    sleep(time: 30, unit: 'SECONDS')
-                    healthCheck(2)
-                }
+            node {
+                sh(script: "echo \"./gradlew bootRun --args='--spring.profiles.active=test' --no-daemon --max-workers=3\" | at now", returnStdout: true)
+                //Allow service to come up
+                sleep(time: 30, unit: 'SECONDS')
+                healthCheck(2)
+            }
         }
 
         stage("Api Tests") {
@@ -42,7 +43,20 @@ try {
                 sh "./gradlew buildDocker --no-daemon --max-workers=3"
             }
         }
-    }
+
+        stage("Push to ECR") {
+            node {
+                script
+                {
+                    // Push the Docker image to ECR
+                    docker.withRegistry('https://445669340969.dkr.ecr.eu-central-1.amazonaws.com', 'ecr:eu-central-1:awsCredentials')
+                    {
+                        docker.image('demo').push('latest')
+                    }
+                }
+            }
+         }
+}
 
   currentBuild.result = 'SUCCESS'
 }
