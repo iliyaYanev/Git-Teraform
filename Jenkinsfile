@@ -16,9 +16,15 @@ try {
         stage("Unit Tests") {
                 node {
                     sh "chmod +x gradlew"
-                    sh "./gradlew clean test -Dspring.profiles.active=test --no-daemon --max-workers=3"
+                    sh "./gradlew clean test --no-daemon --max-workers=3"
                 }
             }
+
+        stage("Deploy") {
+                        node {
+                            sh "./gradlew bootRun -Dspring.profiles.active=test --no-daemon --max-workers=3"
+                        }
+                    }
 
         stage("Build Docker Image") {
             node {
