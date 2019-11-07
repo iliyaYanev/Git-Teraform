@@ -45,7 +45,7 @@ try {
 
         stage("Push to ECR") {
             node {
-                docker.withRegistry('http://999999999999.dkr.ecr.eu-central-1.amazonaws.com', 'ecr:eu-central-1:awsCredentials')
+                docker.withDockerRegistry(registry: [url: 'https://i445669340969.dkr.ecr.eu-central-1.amazonaws.com/ecr-repo', credentialsId:'ecr:eu-central-1:awsCredentials'])
                 docker.image('demo').push('latest')
             }
          }
