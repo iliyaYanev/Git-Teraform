@@ -42,6 +42,14 @@ try {
                 sh "./gradlew buildDocker --no-daemon --max-workers=3"
             }
         }
+
+        stage("Push to ECR") {
+                    node {
+                        docker.withRegistry('https://445669340969.dkr.ecr.eu-central-1.amazonaws.com/ecr-repo', 'ecr:eu-central-1:awsCredentials') {
+                        docker.image('demo').push('latest')
+                    }
+                }
+
     }
 
   currentBuild.result = 'SUCCESS'
