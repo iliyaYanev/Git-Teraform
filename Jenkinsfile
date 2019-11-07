@@ -45,7 +45,7 @@ try {
 
         stage("Push to ECR") {
             node {
-                sh "aws ecr get-login --no-include-email --region=eu-central-1 | cat"
+                sh "aws ecr get-login --region eu-central-1 --no-include-email"
                 docker.withRegistry('https://445669340969.dkr.ecr.eu-central-1.amazonaws.com/ecr-repo', 'ecr:eu-central-1:awsCredentials')
                 docker.image('demo').push('latest')
             }
