@@ -69,6 +69,14 @@ catch (err) {
   throw err
 }
 finally {
+    stage("Cleanup") {
+          node {
+             always {
+                 sh(script: "docker rmi demo:latest | true", returnStdout: true)
+                 cleanWs()
+             }
+          }
+     }
   if (currentBuild.result == 'SUCCESS') {
     currentBuild.result = 'SUCCESS'
   }
