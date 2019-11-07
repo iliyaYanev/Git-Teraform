@@ -9,14 +9,14 @@ try {
         stage("Compile") {
             node {
                 sh "chmod +x gradlew"
-                sh "./gradlew clean build -x test --max-workers=3"
+                sh "./gradlew clean build -x test --no-daemon --max-workers=3"
             }
         }
 
         stage("Unit Tests") {
                 node {
                     sh "chmod +x gradlew"
-                    sh "./gradlew clean test --max-workers=3"
+                    sh "./gradlew clean test --no-daemon --max-workers=3"
                 }
             }
 
