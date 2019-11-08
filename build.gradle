@@ -1,3 +1,5 @@
+import org.gradle.jvm.tasks.Jar
+
 buildscript {
     ext {
         springBootVersion     = "2.2.0.RELEASE"
@@ -19,6 +21,11 @@ apply plugin: "org.springframework.boot"
 apply plugin: "docker"
 
 mainClassName = 'com.mentormate.demo.GitTerraformApplication'
+
+bootJar {
+    baseName = 'demo'
+    destinationDir = file("$rootDir/build/docker/build/libs")
+}
 
 repositories {
     mavenCentral()
@@ -43,6 +50,7 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
 
 task buildDocker(type: Docker, dependsOn: build) {
     push = false
