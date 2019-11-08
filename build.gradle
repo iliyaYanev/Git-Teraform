@@ -1,3 +1,5 @@
+import org.gradle.jvm.tasks.Jar
+
 buildscript {
     ext {
         springBootVersion     = "2.2.0.RELEASE"
@@ -22,6 +24,7 @@ mainClassName = 'com.mentormate.demo.GitTerraformApplication'
 
 bootJar {
     baseName = 'demo'
+    destinationDir = file("$rootDir/build/docker/build/libs")
 }
 
 repositories {
@@ -48,14 +51,8 @@ test {
     useJUnitPlatform()
 }
 
-task copyJar(dependsOn: build) {
-    copy {
-        from '/build/libs/demo.jar'
-        into '/build/docker/build/libs'
-    }
-}
 
-task buildDocker(type: Docker, dependsOn: copyJar) {
+task buildDocker(type: Docker, dependsOn: build) {
     push = false
     applicationName = jar.baseName
     dockerfile = file('src/main/docker/Dockerfile')
