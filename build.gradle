@@ -20,6 +20,10 @@ apply plugin: "docker"
 
 mainClassName = 'com.mentormate.demo.GitTerraformApplication'
 
+bootJar {
+    baseName = 'demo'
+}
+
 repositories {
     mavenCentral()
 }
@@ -44,7 +48,17 @@ test {
     useJUnitPlatform()
 }
 
+task copyJar(dependsOn: build) {
+    copy {
+        from 'build/libs/demo.jar'
+        into 'build/docker/build/libs'
+    }
+}
+
 task buildDocker(type: Docker, dependsOn: build) {
+    doFirst {
+        copyJar
+    }
     push = false
     applicationName = jar.baseName
     dockerfile = file('src/main/docker/Dockerfile')
