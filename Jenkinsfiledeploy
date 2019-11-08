@@ -2,7 +2,7 @@ try {
     timeout(time: 10, unit: 'MINUTES') {
       stage("Deploy") {
         node {
-            sh "runApp.sh"
+            sh "/aws/runApp.sh"
         }
       }
 }
