@@ -56,12 +56,6 @@ try {
                 }
             }
          }
-
-        stage("Run") {
-                    node {
-                       sh "./gradlew bootRun --args='--spring.profiles.active=test' --no-daemon --max-workers=3"
-                    }
-                 }
 }
 
   currentBuild.result = 'SUCCESS'
