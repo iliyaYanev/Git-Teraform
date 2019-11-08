@@ -50,8 +50,8 @@ test {
 
 task copyJar(dependsOn: build) {
     copy {
-        from 'build/libs/demo.jar'
-        into 'build/docker/build/libs'
+        from '/build/libs/demo.jar'
+        into '/build/docker/build/libs'
     }
 }
 
