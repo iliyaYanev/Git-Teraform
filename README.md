@@ -1,2 +1,2 @@
 # Git-Jenkins-Aws
-Sample Project Integrating GitHub, Teraform and Jenkins.
+Sample Project Integrating GitHub, Gradle, AWS, Jenkins and SpringBoot.
