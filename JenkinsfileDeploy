@@ -2,7 +2,7 @@ try {
     timeout(time: 10, unit: 'MINUTES') {
         stage("Deploy") {
             node {
-                sh "BUILD_ID=do_not_kill_me java -jar /build/libs/demo.jar & exit"
+                sh "BUILD_ID=do_not_kill_me java -jar build/docker/build/libs/demo.jar & exit"
             }
         }
     }
