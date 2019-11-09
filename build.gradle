@@ -45,7 +45,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web:2.2.0.RELEASE'
     implementation 'org.springframework.boot:spring-boot-devtools:2.2.0.RELEASE'
     runtimeOnly 'mysql:mysql-connector-java:8.0.18'
-    compileOnly 'org.springframework.boot:spring-boot-starter-tomcat'
     testImplementation('org.springframework.boot:spring-boot-starter-test:2.2.0.RELEASE') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
