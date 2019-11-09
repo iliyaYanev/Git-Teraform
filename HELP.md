@@ -17,8 +17,7 @@ The pipeline is declarative with a Jenkinsfile added in the repo. It consists of
 + Deploy - the build is deployed so we can verify the application boots and functional testing can be done.
 + Api tests - integration and functional tests are executed
 + Build docker image - the now compiled and tested commit is packaged in a jar, and a docker container is build see [Dockerfile](https://github.com/iliyaYanev/Git-Teraform/blob/master/src/main/docker/Dockerfile)
-+ Push to ECR - the resultting image is tagged and pushed to an [ECR repo]
-(https://eu-central-1.console.aws.amazon.com/ecr/repositories/demo/?region=eu-central-1)
++ Push to ECR - the resultting image is tagged and pushed to an [ECR repo](https://eu-central-1.console.aws.amazon.com/ecr/repositories/demo/?region=eu-central-1)
 
 ### Additional Links
 These additional references should also help you:
