@@ -97,7 +97,7 @@ def healthCheck(int interval) {
 }
 
 def healthResult() {
-    def response = sh(script:"curl -s -X GET -H 'Accept: application/json' -H 'Content-Type: application/json' http://ec2-18-197-152-13.eu-central-1.compute.amazonaws.com:9090/user/actuator/health", returnStdout: true)
+    def response = sh(script:"curl -s -X GET -H 'Accept: application/json' -H 'Content-Type: application/json' http://ec2-18-195-101-109.eu-central-1.compute.amazonaws.com:9090/user/actuator/health", returnStdout: true)
     println response
     return jsonParse(response).status
 }
