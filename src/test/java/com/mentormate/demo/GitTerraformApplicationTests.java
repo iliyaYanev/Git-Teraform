@@ -43,6 +43,6 @@ class GitTerraformApplicationTests {
             HttpMethod.GET, entity, String.class);
 
         assertNotNull(response.getBody());
-        assertNotNull(response.getBody());
+        //assertNotNull(response.getBody());
     }
 }
