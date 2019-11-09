@@ -6,8 +6,7 @@ The BE conists of one user service, with a few REST endpoints for managing users
 
 ### Pipeline
 There is a jenkins master and 2 jenkins slave instances.
-see [Jenkins]
-(http://ec2-18-197-152-13.eu-central-1.compute.amazonaws.com:8080/)
+see [Jenkins](http://ec2-18-197-152-13.eu-central-1.compute.amazonaws.com:8080/)
 
 The pipeline is declarative with a Jenkinsfile added in the repo. It consists of the following steps
 
