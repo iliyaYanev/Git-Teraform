@@ -2,7 +2,8 @@ try {
     timeout(time: 10, unit: 'MINUTES') {
         stage("Deploy") {
             node {
-                sh "BUILD_ID=do_not_kill_me ./gradlew bootRun --args='--spring.profiles.active=test' & exit"
+                sh "BUILD_ID=do_not_kill_me"
+                sh "./gradlew bootRun --args='--spring.profiles.active=test' & exit"
             }
         }
     }
