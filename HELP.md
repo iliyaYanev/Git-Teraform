@@ -24,4 +24,6 @@ These additional references should also help you:
  [Getting started with EC2](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-ec2-instances.html)
  
  [Getting started with RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.html)
+ 
+ [Swagger](http://ec2-18-197-152-13.eu-central-1.compute.amazonaws.com:9091/user/swagger-ui.html#/user-resource)
 
