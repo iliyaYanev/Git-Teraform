@@ -2,7 +2,7 @@
 This small project integrates GitHub, Gradle, SpringBoot, AWS an Jenkins. The goal is to have each branch compiled, tested, packaged as a docker container and then uploading the resulting image to ECR.
 
 ### Backend
-The BE conists of one user service, with a few REST endpoints for managing users a mysql database. To the start the project locally you can start the mysql imgage from the docker-compose file and run `gradlew bootRun`
+The BE conists of one user service, with a few REST endpoints for managing users a mysql database. To the start the project locally you can start the mysql image from the docker-compose file and run `gradlew bootRun`
 
 ### Pipeline
 There is a jenkins master and 2 jenkins slave instances.
